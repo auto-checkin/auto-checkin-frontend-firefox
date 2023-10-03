@@ -8,5 +8,10 @@
          "matches":  ["*://checkin.york.ac.uk/selfregistration"],
          "js": ["src/main.js"]
       }
-   ]
+   ],
+   "background": {
+      "scripts": ["src/background.js"],
+      "persistent": false,
+      "type": "module"
+   }
 }
