@@ -8,17 +8,30 @@ async function handleMessage(message) {
             time,
             date,
         });
-        const url = 'https://api.yusu.org.uk/query_code?' + query.toString();
+        const url = 'https://api.yusu.co.uk/query_code?' + query.toString();
         const res = await fetch(url);
+        if (res.status == 404) {
+            // No code found
+            return null;
+        }
         const data = await res.json();
-        browser.runtime.sendMessage({
-            type: 'found-code',
-            item: {
-                activity,
-                time,
-                date,
+        return data;
+    } else if (message['type'] == 'submit-code') {
+        const { activity, time, date, code } = message;
+        const url = 'https://api.yusu.co.uk/submit_code';
+        const res = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
             },
-            response: data,
+            body: JSON.stringify({
+                activity,
+                date,
+                time,
+                code,
+            }),
         });
+        const data = await res.json();
+        return data;
     }
 }

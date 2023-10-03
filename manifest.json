@@ -9,6 +9,10 @@
          "js": ["src/main.js"]
       }
    ],
+   "permissions": [
+      "webRequest",
+      "*://api.yusu.co.uk/*"
+   ],
    "background": {
       "scripts": ["src/background.js"],
       "persistent": false,
