@@ -1,0 +1,12 @@
+{
+   "manifest_version":2, 
+   "name": "auto-checkin",
+   "version": "0.0.1",
+   "description": "auto checkin to university login system",
+   "content_scripts":[
+      {
+         "matches":  ["*://checkin.york.ac.uk/selfregistration"],
+         "js": ["src/main.js"]
+      }
+   ]
+}
